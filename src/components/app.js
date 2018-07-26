@@ -14,8 +14,16 @@ export default class App extends Component {
     
     this.state = {
       active: false,
-      startDate: moment()
+      startDate: moment(),
+      timeRemaining: {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      }
     }
+    
+    this.handleGenerate = this.handleGenerate.bind(this)
   }
   
   handleChange = function(date) {
@@ -47,8 +55,19 @@ export default class App extends Component {
 
       // Output the result in an element with id="demo"
       const time = days + "d" + hours + "h" + minutes + "m" + seconds + "s";
-      console.log(time)
+      
+      this.setState({
+//        timeRemaining: {
+//          days,
+//          hours,
+//          minutes,
+//          seconds
+//        }
+        active: this.state.active
+      })
 
+      console.log(this.state.timeRemaining)
+      
       // If the count down is over, write some text
       if (distance < 0) {
         clearInterval(x);
@@ -67,7 +86,7 @@ export default class App extends Component {
       ]
     } else {
       return [
-        <Picker callback={(date) => this.handleChange(date)}/>,
+        <Picker startDate={this.state.startDate} callback={(date) => this.handleChange(date)}/>,
         Button('Generate Countdown', () => this.handleGenerate())
       ]
     }
