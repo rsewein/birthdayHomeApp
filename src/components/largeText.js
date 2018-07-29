@@ -1,9 +1,9 @@
 import React from 'react';
 
-const LargeText = () => {
+const LargeText = (text) => {
   return (
-    <div className="large-text">
-      04/03
+    <div key={2} className="large-text">
+      {text}
     </div>
   )
 }
